@@ -7,7 +7,10 @@ def index():
         return render_template('index.html')
 
     if request.method == 'POST':
-        return render_template('success.html')
+        
+        confession = request.form.get("confession")
+
+        return render_template('success.html', confession=confession)
 
 @app.route('/read')
 def read():
