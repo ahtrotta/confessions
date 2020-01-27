@@ -1,16 +1,16 @@
-{% extends "layour.html" %}
+{% extends "layout.html" %}
 
 {% block title %}
-    Confessions
+    confessions
 {% endblock %}
 
-{% black body %}
+{% block body %}
     <form>    
-        <h1>Confessions</h1>
+        <h1>confessions</h1>
 
-        <h4>Write your confession:</h4>
+        <h4>what will you say?</h4>
         <textarea name="confession" cols="40" rows="5"></textarea>
 
-        <button name="submit-confession">Submit</button>
+        <button name="submit-confession">s</button>
     </form>
 {% endblock %}
