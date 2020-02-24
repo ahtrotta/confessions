@@ -31,4 +31,6 @@ def read():
             id_list.append(id)
         rand_id = choice(id_list)
         secret = db.session.query(Confession).filter(Confession.id == rand_id).all()
+        db.session.delete(secret[0])
+        db.session.commit()
         return render_template('view.html', secret=secret[0].confession)
