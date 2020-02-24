@@ -1,9 +1,10 @@
 import os
 
 from flask import Flask, g, session
-from Flask-Session import Session
-from sqlalchemy import create_engine
-from sqlalchemy.orm import scoped_session, sessionmaker
+from flask_sqlalchemy import SQLAlchemy
+
+# Globally accessible libraries
+db = SQLAlchemy()
 
 def create_app(test_config=None):
     # create and configure the app
@@ -24,6 +25,15 @@ def create_app(test_config=None):
         os.makedirs(app.instance_path)
     except OSError:
         pass
+
+    # Initialize Plugins
+    db.init_app(app)
+
+    with app.app_context():
+        # Include routes
+        from . import routes
+
+        return app
 
 
 
