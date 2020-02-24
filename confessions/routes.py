@@ -1,7 +1,9 @@
 from flask import Flask, render_template, request, session
 from flask import current_app as app
-from .models import db, Confession
+from .models import Confession
+from . import db
 from datetime import datetime
+from random import choice
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
@@ -16,11 +18,17 @@ def index():
         db.session.commit()
         return render_template('success.html', confessions=db.session.query(Confession).all())
 
-@app.route('/read')
+@app.route('/read', methods=['POST', 'GET'])
 def read():
     
     if request.method == 'GET':
         return render_template('read.html')
     
     elif request.method == 'POST':
-        return render_template('view.html', secret="secret")
+        ids = db.session.query(Confession.id).all()
+        id_list = []
+        for id, in ids:
+            id_list.append(id)
+        rand_id = choice(id_list)
+        secret = db.session.query(Confession).filter(Confession.id == rand_id).all()
+        return render_template('view.html', secret=secret[0].confession)
