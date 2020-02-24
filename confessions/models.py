@@ -8,4 +8,4 @@ class Confession(db.Model):
     created = db.Column(db.DateTime, nullable=False)
 
     def __repr__(self):
-        return '<Confession {}...>'.format(self.confession[0:15])
+        return '<Confession: {}...>'.format(self.confession[0:15])

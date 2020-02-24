@@ -7,6 +7,10 @@
 {% block body %}
     <h1>submission successful</h1>
 
-    <p>{{ confession }}</p>
+    <ul>
+        {% for confession in confessions %}
+        <li>{{ confession.confession }}</li>
+        {% endfor %}
+    </ul>
 
 {% endblock %}
