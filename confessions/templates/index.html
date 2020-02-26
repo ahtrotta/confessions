@@ -6,9 +6,11 @@
 
 {% block body %}
     <form action="/" method="post">    
-        <h4>what do you have to say?</h4>
-        <textarea name="confession" cols="40" rows="5"></textarea>
-
-        <button>submit</button>
+        <label for="confession">what do you want to say?</label>
+        <div class="input-group">
+            <textarea id="confession" class="form-control" name="confession" cols="40" rows="8"></textarea>
+        </div>
+        
+        <button class="btn btn-outline-secondary" type="button">confess</button>
     </form>
 {% endblock %}
