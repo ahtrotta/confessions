@@ -2,8 +2,13 @@ from flask import Flask, render_template, request, session
 from flask import current_app as app
 from .models import Confession
 from . import db
-from datetime import datetime
+from datetime import datetime, timedelta
 from random import choice
+
+@app.before_request
+def make_session_permanent():
+    session.permanent = True
+    app.permanent_session_lifetime = timedelta(hours=48)
 
 @app.route('/')
 def index():
