@@ -5,11 +5,15 @@ from . import db
 from datetime import datetime
 from random import choice
 
-@app.route('/', methods=['POST', 'GET'])
+@app.route('/')
 def index():
+    return render_template('about.html')
+
+@app.route('/confess', methods=['POST', 'GET'])
+def confess():
     
     if request.method == 'GET':
-        return render_template('index.html')
+        return render_template('confess.html')
 
     elif request.method == 'POST':
         confession = request.form.get("confession")
