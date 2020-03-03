@@ -5,11 +5,6 @@ from . import db
 from datetime import datetime, timedelta
 from random import choice
 
-@app.before_request
-def make_session_permanent():
-    session.permanent = True
-    app.permanent_session_lifetime = timedelta(hours=48)
-
 @app.route('/')
 def index():
     return render_template('about.html')
